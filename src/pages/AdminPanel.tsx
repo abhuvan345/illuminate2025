@@ -78,7 +78,7 @@ const AdminPanel: React.FC = () => {
     e.preventDefault();
     // Simple authentication (in production, use proper authentication)
     if (
-      loginData.username === "admin" &&
+      loginData.username === "bmsce" &&
       loginData.password === "illuminate2025"
     ) {
       setIsLoggedIn(true);
