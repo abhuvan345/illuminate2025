@@ -34,8 +34,8 @@ const HeroSection: React.FC = () => {
           </p>
           
           <p className="text-lg text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
-            Join India's most prestigious entrepreneurship workshop by E-Cell IIT Bombay. 
-            Transform your startup ideas into reality with expert guidance and exclusive resources.
+            Join India's most prestigious entrepreneurship workshop by BMS College of Engineering in colaboration with E-Cell IIT Bombay. 
+            <br/>Transform your startup ideas into reality with expert guidance and exclusive resources.
           </p>
           
           <button

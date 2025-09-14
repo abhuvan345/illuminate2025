@@ -10,7 +10,7 @@ import {
   Send,
 } from "lucide-react";
 import { RegistrationService } from "../lib/registrationService";
-
+// import paymentImg from "../payment.jpg";
 const RegistrationForm: React.FC = () => {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -243,6 +243,23 @@ const RegistrationForm: React.FC = () => {
                   placeholder="Briefly describe your startup idea or entrepreneurial interests..."
                 />
               </div>
+              <div>
+                <label className="flex items-center  text-white font-semibold mb-2">
+                  <Lightbulb className="h-5 w-5 mr-2 text-yellow-400" />
+                  Payment Details
+                </label>
+                <h3 className="mb-4 ">
+                  If any problem exists with the payment contact the
+                  coordinators !!!
+                </h3>
+                <div className="flex items-center justify-center h-full">
+                  <img
+                    src="/image.png"
+                    alt=""
+                    className="h-80 w-50 rounded-lg shadow-md "
+                  />
+                </div>
+              </div>
 
               <div>
                 <label className="flex items-center text-white font-semibold mb-2">
@@ -280,9 +297,9 @@ const RegistrationForm: React.FC = () => {
                   Registration Fee: ₹250 per participant
                   <br />
                   Please make payment and upload the screenshot above.
-                  <br />
-                  Payment details will be shared after initial registration.
                 </p>
+                <h2 className="text-green-500">After the payment verified you will get the event ticket to your regisered mail id check once.</h2>
+                <p className="text-red-300 text-sm">If you didn't receive the mail after the 24 hrs of your registration contact coordinators.</p>
               </div>
 
               <button

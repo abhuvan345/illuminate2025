@@ -7,14 +7,14 @@ const ParticipationDetails: React.FC = () => {
       icon: <IndianRupee className="h-8 w-8" />,
       title: "Registration Fee",
       value: "₹250",
-      subtitle: "Reduced from ₹650",
-      description: "Heavily subsidized by E-Cell IIT Bombay to make entrepreneurship education accessible"
+      subtitle: "Reduced from ₹799",
+      description: "Heavily subsidized by BMS College of Engineering to make entrepreneurship education accessible"
     },
     {
       icon: <Users className="h-8 w-8" />,
-      title: "Minimum Participants",
+      title: "Seats Available",
       value: "70",
-      subtitle: "Per college",
+      subtitle: "Students",
       description: "Ensures vibrant group dynamics and meaningful peer-to-peer learning"
     },
     {
@@ -61,7 +61,7 @@ const ParticipationDetails: React.FC = () => {
               <div className="grid md:grid-cols-2 gap-6 text-gray-300">
                 <div>
                   <h4 className="font-semibold text-white mb-2">Subsidized Education</h4>
-                  <p>E-Cell IIT Bombay subsidizes 61% of the actual cost to make quality entrepreneurship education accessible to students across India.</p>
+                  <p>Bms College of Engineering subsidizes 70% of the actual cost to make quality entrepreneurship education accessible to students across BMS College Of Engineering.</p>
                 </div>
                 <div>
                   <h4 className="font-semibold text-white mb-2">Value Proposition</h4>

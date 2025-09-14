@@ -88,7 +88,7 @@ const IncentivesSection: React.FC = () => {
         <div className="bg-gradient-to-r from-yellow-400/10 to-yellow-600/10 rounded-2xl p-8 border border-yellow-400/30 text-center">
           <h3 className="text-2xl font-bold text-white mb-4">Limited Time Offer</h3>
           <p className="text-lg text-gray-300 mb-6">
-            The first 30 colleges to register will receive additional premium subscriptions 
+            The first 70 students to register will receive additional premium subscriptions 
             and exclusive access to advanced entrepreneurship resources.
           </p>
           <div className="inline-flex items-center text-yellow-400 font-semibold">

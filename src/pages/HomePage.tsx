@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import Navbar from '../components/Navbar';
-import HeroSection from '../components/HeroSection';
-import AboutSection from '../components/AboutSection';
-import WorkshopStructure from '../components/WorkshopStructure';
-import IncentivesSection from '../components/IncentivesSection';
-import ParticipationDetails from '../components/ParticipationDetails';
-import Guidelines from '../components/Guidelines';
-import RegistrationForm from '../components/RegistrationForm';
-import ContactSection from '../components/ContactSection';
-import FAQ from '../components/FAQ';
-import Testimonials from '../components/Testimonials';
-import CountdownTimer from '../components/CountdownTimer';
-import ParticleBackground from '../components/ParticleBackground';
+import React, { useState, useEffect } from "react";
+import Navbar from "../components/Navbar";
+import HeroSection from "../components/HeroSection";
+import AboutSection from "../components/AboutSection";
+import WorkshopStructure from "../components/WorkshopStructure";
+import IncentivesSection from "../components/IncentivesSection";
+import ParticipationDetails from "../components/ParticipationDetails";
+import Guidelines from "../components/Guidelines";
+import RegistrationForm from "../components/RegistrationForm";
+import ContactSection from "../components/ContactSection";
+import FAQ from "../components/FAQ";
+import Testimonials from "../components/Testimonials";
+import CountdownTimer from "../components/CountdownTimer";
+import ParticleBackground from "../components/ParticleBackground";
+import Footer from "../components/Footer";
 
 const HomePage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -45,11 +46,9 @@ const HomePage: React.FC = () => {
       <WorkshopStructure />
       <IncentivesSection />
       <ParticipationDetails />
-      <Guidelines />
       <RegistrationForm />
-      <FAQ />
-      <Testimonials />
       <ContactSection />
+      <Footer/>
     </div>
   );
 };

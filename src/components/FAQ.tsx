@@ -6,8 +6,8 @@ const FAQ: React.FC = () => {
 
   const faqs = [
     {
-      question: "What is the minimum number of participants required?",
-      answer: "Each college must have a minimum of 70 participants to confirm the workshop. This ensures vibrant group dynamics and meaningful peer-to-peer learning experiences."
+      question: "What is the  number of seats available?",
+      answer: "Only 70 seats available This ensures vibrant group dynamics and meaningful peer-to-peer learning experiences."
     },
     {
       question: "What happens after I register?",
