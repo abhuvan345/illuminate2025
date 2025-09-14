@@ -75,11 +75,11 @@ const ContactSection: React.FC = () => {
               </h3>
             </div>
             <p className="text-gray-300 mb-4">Pradeep S</p>
+            <h3>9980026114</h3>
             <a
               href="mailto:savithri.bt@bmsce.ac.in"
               className="inline-flex items-center text-yellow-400 font-semibold hover:text-yellow-300 transition-colors duration-200"
             >
-              <h3>9980026114</h3>
               pradeeps.bt@bmsce.ac.in
               <ExternalLink className="h-4 w-4 ml-2" />
             </a>
@@ -117,9 +117,9 @@ const ContactSection: React.FC = () => {
               <div>
                 <h4 className="font-semibold text-white mb-2">Contact</h4>
                 <p className="text-gray-300">
-                 Anirudh Muralidar - +91 98867 57800
-                 <br/>
-                 Bhuvan A - +91 98447 76719
+                  Anirudh Muralidar - +91 98867 57800
+                  <br />
+                  Bhuvan A - +91 98447 76719
                 </p>
               </div>
             </div>
