@@ -74,12 +74,13 @@ const ContactSection: React.FC = () => {
                 Faculty Coordinator
               </h3>
             </div>
-            <p className="text-gray-300 mb-4">Savithri M Bhat</p>
+            <p className="text-gray-300 mb-4">Pradeep S</p>
             <a
               href="mailto:savithri.bt@bmsce.ac.in"
               className="inline-flex items-center text-yellow-400 font-semibold hover:text-yellow-300 transition-colors duration-200"
             >
-              savithri.bt@bmsce.ac.in
+              <h3>9980026114</h3>
+              pradeeps.bt@bmsce.ac.in
               <ExternalLink className="h-4 w-4 ml-2" />
             </a>
           </div>
