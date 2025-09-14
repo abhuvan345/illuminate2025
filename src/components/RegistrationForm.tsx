@@ -213,19 +213,32 @@ const RegistrationForm: React.FC = () => {
                   <Calendar className="h-5 w-5 mr-2 text-yellow-400" />
                   Year *
                 </label>
+
                 <select
                   name="year"
                   value={formData.year}
                   onChange={handleInputChange}
                   required
-                  className="form-input w-full px-4 py-3 rounded-lg text-white focus:outline-none"
+                  className="w-full px-4 py-3 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400"
                 >
-                  <option value="">Select your year</option>
-                  <option value="1st">1st Year</option>
-                  <option value="2nd">2nd Year</option>
-                  <option value="3rd">3rd Year</option>
-                  <option value="4th">4th Year</option>
-                  <option value="Other">Other</option>
+                  <option value="" className="bg-gray-800 text-white">
+                    Select your year
+                  </option>
+                  <option value="1st" className="bg-gray-800 text-white">
+                    1st Year
+                  </option>
+                  <option value="2nd" className="bg-gray-800 text-white">
+                    2nd Year
+                  </option>
+                  <option value="3rd" className="bg-gray-800 text-white">
+                    3rd Year
+                  </option>
+                  <option value="4th" className="bg-gray-800 text-white">
+                    4th Year
+                  </option>
+                  <option value="Other" className="bg-gray-800 text-white">
+                    Other
+                  </option>
                 </select>
               </div>
 
@@ -298,8 +311,14 @@ const RegistrationForm: React.FC = () => {
                   <br />
                   Please make payment and upload the screenshot above.
                 </p>
-                <h2 className="text-green-500">After the payment verified you will get the event ticket to your regisered mail id check once.</h2>
-                <p className="text-red-300 text-sm">If you didn't receive the mail after the 24 hrs of your registration contact coordinators.</p>
+                <h2 className="text-green-500">
+                  After the payment verified you will get the event ticket to
+                  your regisered mail id check once.
+                </h2>
+                <p className="text-red-300 text-sm">
+                  If you didn't receive the mail after the 24 hrs of your
+                  registration contact coordinators.
+                </p>
               </div>
 
               <button
