@@ -29,31 +29,52 @@ const AdminPanel: React.FC = () => {
     useState<Participant | null>(null);
 
   // Load data from Supabase
-  useEffect(() => {
-    const loadParticipants = async () => {
-      try {
-        const registrations = await RegistrationService.getAllRegistrations();
-        const participantsWithStatus: Participant[] = registrations.map(
-          (reg) => ({
-            ...reg,
-            status: (reg.payment_verified ? "approved" : "pending") as
-              | "pending"
-              | "approved"
-              | "rejected",
-          })
-        );
-        setParticipants(participantsWithStatus);
-        setFilteredParticipants(participantsWithStatus);
-      } catch (error) {
-        console.error("Error loading participants:", error);
-        // Fallback to empty array on error
-        setParticipants([]);
-        setFilteredParticipants([]);
-      }
-    };
+  const loadParticipants = async () => {
+    try {
+      console.log("Loading participants from database...");
+      const registrations = await RegistrationService.getAllRegistrations();
 
-    loadParticipants();
-  }, []);
+      const participantsWithStatus: Participant[] = registrations.map((reg) => {
+        // Debug logging to see what we're getting from database
+        console.log("Registration data:", {
+          id: reg.id,
+          name: reg.full_name,
+          status: reg.status,
+          payment_verified: reg.payment_verified,
+        });
+
+        // Use the status field directly from database, with fallback logic
+        const status: "pending" | "approved" | "rejected" =
+          reg.status || (reg.payment_verified ? "approved" : "pending");
+
+        console.log(`Final status for ${reg.full_name}: ${status}`);
+
+        return {
+          ...reg,
+          status: status,
+        };
+      });
+      setParticipants(participantsWithStatus);
+      setFilteredParticipants(participantsWithStatus);
+      console.log(`Loaded ${participantsWithStatus.length} participants`);
+    } catch (error) {
+      console.error("Error loading participants:", error);
+      alert(
+        `Failed to load participants: ${
+          error instanceof Error ? error.message : "Unknown error"
+        }`
+      );
+      // Fallback to empty array on error
+      setParticipants([]);
+      setFilteredParticipants([]);
+    }
+  };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      loadParticipants();
+    }
+  }, [isLoggedIn]);
 
   useEffect(() => {
     let filtered = participants;
@@ -92,24 +113,32 @@ const AdminPanel: React.FC = () => {
     newStatus: "approved" | "rejected"
   ) => {
     try {
-      // Update in Supabase
-      await RegistrationService.updatePaymentVerification(
-        participantId,
-        newStatus === "approved"
+      console.log(
+        `Attempting to update participant ${participantId} to ${newStatus}`
       );
 
-      // Update local state
-      setParticipants((prev) =>
-        prev.map((p) =>
-          p.id === participantId
-            ? {
-                ...p,
-                status: newStatus,
-                payment_verified: newStatus === "approved",
-              }
-            : p
-        )
+      // Validate participantId
+      if (!participantId) {
+        throw new Error("Participant ID is missing");
+      }
+
+      // Update status directly in database using the status field
+      console.log(`About to call updateRegistrationStatus with:`, {
+        participantId,
+        newStatus,
+      });
+
+      await RegistrationService.updateRegistrationStatus(
+        participantId,
+        newStatus
       );
+
+      console.log(
+        `Successfully updated participant ${participantId} in database with status: ${newStatus}`
+      );
+
+      // Refresh data from database to ensure UI shows current state
+      await loadParticipants();
 
       // In a real application, you would send an email here
       const participant = participants.find((p) => p.id === participantId);
@@ -122,9 +151,20 @@ const AdminPanel: React.FC = () => {
           // Send polite rejection email
         }
       }
+
+      // Show success message
+      alert(
+        `Successfully ${
+          newStatus === "approved" ? "approved" : "rejected"
+        } participant`
+      );
     } catch (error) {
       console.error("Error updating status:", error);
-      alert("Failed to update status. Please try again.");
+      alert(
+        `Failed to update status: ${
+          error instanceof Error ? error.message : "Unknown error"
+        }. Please try again.`
+      );
     }
   };
 
@@ -409,20 +449,34 @@ const AdminPanel: React.FC = () => {
                         {participant.status === "pending" && (
                           <>
                             <button
-                              onClick={() =>
-                                participant.id &&
-                                handleStatusChange(participant.id, "approved")
-                              }
+                              onClick={() => {
+                                if (!participant.id) {
+                                  alert("Error: Participant ID is missing");
+                                  console.error(
+                                    "Missing participant ID:",
+                                    participant
+                                  );
+                                  return;
+                                }
+                                handleStatusChange(participant.id, "approved");
+                              }}
                               className="p-2 text-green-400 hover:bg-green-400/20 rounded-lg transition-colors duration-200"
                               title="Approve"
                             >
                               <Check className="h-4 w-4" />
                             </button>
                             <button
-                              onClick={() =>
-                                participant.id &&
-                                handleStatusChange(participant.id, "rejected")
-                              }
+                              onClick={() => {
+                                if (!participant.id) {
+                                  alert("Error: Participant ID is missing");
+                                  console.error(
+                                    "Missing participant ID:",
+                                    participant
+                                  );
+                                  return;
+                                }
+                                handleStatusChange(participant.id, "rejected");
+                              }}
                               className="p-2 text-red-400 hover:bg-red-400/20 rounded-lg transition-colors duration-200"
                               title="Reject"
                             >
@@ -541,22 +595,40 @@ const AdminPanel: React.FC = () => {
               {selectedParticipant.status === "pending" && (
                 <div className="flex gap-4 pt-4">
                   <button
-                    onClick={() => {
-                      if (selectedParticipant.id) {
-                        handleStatusChange(selectedParticipant.id, "approved");
-                        setSelectedParticipant(null);
+                    onClick={async () => {
+                      if (!selectedParticipant.id) {
+                        alert("Error: Participant ID is missing");
+                        console.error(
+                          "Missing participant ID:",
+                          selectedParticipant
+                        );
+                        return;
                       }
+                      await handleStatusChange(
+                        selectedParticipant.id,
+                        "approved"
+                      );
+                      setSelectedParticipant(null);
                     }}
                     className="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg font-semibold transition-colors duration-200"
                   >
                     Approve Registration
                   </button>
                   <button
-                    onClick={() => {
-                      if (selectedParticipant.id) {
-                        handleStatusChange(selectedParticipant.id, "rejected");
-                        setSelectedParticipant(null);
+                    onClick={async () => {
+                      if (!selectedParticipant.id) {
+                        alert("Error: Participant ID is missing");
+                        console.error(
+                          "Missing participant ID:",
+                          selectedParticipant
+                        );
+                        return;
                       }
+                      await handleStatusChange(
+                        selectedParticipant.id,
+                        "rejected"
+                      );
+                      setSelectedParticipant(null);
                     }}
                     className="flex-1 bg-red-600 hover:bg-red-700 text-white py-3 px-6 rounded-lg font-semibold transition-colors duration-200"
                   >

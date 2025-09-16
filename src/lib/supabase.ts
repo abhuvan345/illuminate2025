@@ -22,4 +22,5 @@ export interface Registration {
   payment_screenshot_url?: string;
   created_at?: string;
   payment_verified?: boolean;
+  status?: 'pending' | 'approved' | 'rejected';
 }
