@@ -10,7 +10,7 @@ const CountdownTimer: React.FC = () => {
   });
 
   useEffect(() => {
-    const targetDate = new Date('2025-09-30T23:59:59').getTime();
+    const targetDate = new Date('2025-10-06T23:59:59').getTime();
 
     const timer = setInterval(() => {
       const now = new Date().getTime();
@@ -51,7 +51,7 @@ const CountdownTimer: React.FC = () => {
         </div>
         
         <p className="text-gray-400 text-lg">
-          Registration closes on <span className="text-yellow-400 font-semibold">September 30, 2025</span>
+          Registration closes on <span className="text-yellow-400 font-semibold">October 06, 2025</span>
         </p>
       </div>
     </section>
