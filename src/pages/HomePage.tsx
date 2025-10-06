@@ -47,7 +47,7 @@ const HomePage: React.FC = () => {
       <IncentivesSection />
       <ParticipationDetails />
       {/* <RegistrationForm /> */}
-      <h1>Registration has been closed. <br/> For any other queries contact coodinators !!!</h1>
+      <h1  className="min-h-screen bg-black flex items-center justify-center">Registration has been closed. <br/> For any other queries contact coodinators !!!</h1>
       <ContactSection />
       <Footer/>
     </div>
