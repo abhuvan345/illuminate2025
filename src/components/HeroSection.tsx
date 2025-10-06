@@ -42,7 +42,7 @@ const HeroSection: React.FC = () => {
             onClick={scrollToRegistration}
             className="btn-primary text-black font-bold py-4 px-8 rounded-full text-lg hover:scale-105 transform transition-all duration-300 animate-glow"
           >
-            Register Now
+            Registration Closed
           </button>
           
           <div className="mt-16 animate-bounce">
