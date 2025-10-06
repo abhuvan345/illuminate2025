@@ -46,7 +46,8 @@ const HomePage: React.FC = () => {
       <WorkshopStructure />
       <IncentivesSection />
       <ParticipationDetails />
-      <RegistrationForm />
+      {/* <RegistrationForm /> */}
+      <h1>Registration has been closed. <br/> For any other queries contact coodinators !!!</h1>
       <ContactSection />
       <Footer/>
     </div>
